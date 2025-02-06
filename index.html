@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메일 서비스</title>
+    
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/fontawesome/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <script defer src="./assets/js/alpinejs.min.js"></script>
+    <script defer src="./assets/js/jquery-3.7.1.min.js"></script>
+    <script src="./assets/js/tailwindcss.js"></script>
+    <script src="./style.config.js"></script>
+    <script src="./assets/fontawesome/js/all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    
+    
+    <script src="./routers/router.js"></script>
+    
+</head>
+<body class="h-dvh w-dvw bg-lightGray" x-data>
+   
+    <!-- header -->
+    <header class="h-[56px] px-[8px] flex justify-start">
+        <!-- h1 부분 -->
+        <section class="flex w-[256px] px-[8px]">
+            <button class="leading-[40px] w-[40px] rounded-[50%] h-[40px] my-auto hover:bg-bgGray ">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <h1 class="leading-[56px]">
+                <a href="#/home" class="block font-bold px-[8px]">LX 메일</a>
+            </h1>
+        </section>
+
+        <!-- search -->
+        <div 
+            x-data="searchComponent"
+            class="flex justify-between my-[4px] p-[8px] rounded-[24px] bg-slate-200 min-w-[600px] leading-[32px] focus-within:bg-white focus-within:shadow-md transition-all relative"
+            >
+            <button 
+                class="w-[32px] hover:bg-gray-300 rounded-full"
+                @click="handleSearchClick"
+                x-ref="searchBtn"
+            >
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+            <input 
+                x-model="searchMail"
+                placeholder="메일 검색"
+                class="bg-[transparent] w-[calc(100%-98px)] px-[4px] outline-none focus:ring-0"
+                @keyup="handleEnterKey"
+            />
+            <div class="flex justify-end min-w-[66px]">
+                <button 
+                    x-show="searchMail.length > 0"
+                    @click="clearSearch"
+                    class="w-[32px] mr-[2px] hover:bg-gray-300 rounded-full"
+                >
+                    <i class="fa-solid fa-x"></i>
+                </button>                
+                <button
+                    class="w-[32px] hover:bg-gray-300 rounded-full"
+                >
+                    <i class="fa-solid fa-sliders"></i>
+                </button>
+            </div>
+            <div 
+                class="absolute top-[50px] left-0 w-full border border-1 border-gray-400 p-[8px] shadow-lg leading-[24px] bg-white z-9 text-[14px]"
+            >
+                <dl class="flex mb-[4px]">
+                    <dt class="text-gray-500 w-[20%] leading-[33px]"><label for="fromMail" >보낸사람</label></dt>
+                    <dd class="w-[80%]"><input id="fromMail" name="fromMail" class="border-gray-400 border-b w-full outline-none focus:ring-0 p-[4px]"/></dd>
+                </dl>
+                <dl class="flex mb-[4px]">
+                    <dt class="text-gray-500 w-[20%] leading-[33px]"><label for="toMail" >받는사람</label></dt>
+                    <dd class="w-[80%]"><input id="toMail" name="toMail" class="border-gray-400 border-b w-full outline-none focus:ring-0 p-[4px]"/></dd>
+                </dl>
+                <dl class="flex mb-[4px]">
+                    <dt class="text-gray-500 w-[20%] leading-[33px]"><label for="contentMail" >제목/내용</label></dt>
+                    <dd class="w-[80%]">
+
+                        <input id="contentMail" name="contentMail" class="border-gray-400 border-b w-full outline-none focus:ring-0 p-[4px]"/>
+                    </dd>
+                </dl>
+                <dl class="flex mb-[4px]">
+                    <dt class="text-gray-500 w-[20%] leading-[33px]"><label for="toMail" >받는사람</label></dt>
+                    <dd class="w-[80%]"><input id="toMail" name="toMail" class="border-gray-400 border-b w-full outline-none focus:ring-0 p-[4px]"/></dd>
+                </dl>
+                <div class="flex justify-end">
+                    <button class="bg-bgBtn px-[16px] py-[8px] text-white rounded-sm shadow-sm hover:shadow-lg hover:bg-hoverBtn ">상세검색</button>
+                </div>
+            </div>
+            
+        </div>
+        <!-- search 끝 -->
+
+
+        <!-- left -->
+        <nav>
+            <a href="#/home"> <i class="fa-solid fa-envelope-open-text"></i></a>
+            <a href="#/home/home2"> <i class="fa-solid fa-envelope-open-text"></i></a>
+            <a href="#/home/home3"> <i class="fa-solid fa-envelope-open-text"></i></a>
+            <a href="#/home/home3-1"> <i class="fa-solid fa-envelope-open-text"></i></a>
+            <a href="#/calendar" ><i class="fa-solid fa-calendar-days"></i></a>
+            <a href="#/contact" ><i class="fa-solid fa-circle-info"></i></a>
+        </nav>
+
+        <section>
+
+        </section>
+    </header>
+    
+    <!-- header 끝 -->
+    <script src="./components/common/header.js"></script>
+
+
+    <!-- 메인 시작 -->
+
+    <!-- home 메일서비스 시작 -->
+    <div x-show="$store.router.isRoute('home')" class="flex h-[calc(100%-56px)] p-[8px]">
+        <!-- 사이드 -->
+        <aside class="w-[256px] p-[8px] leading-[40px]" x-data>
+            <nav>
+                <ul>
+                    <template x-for="item in $store.pageStore.menuItems" :key="item.id">
+                        <li class="mb-[4px]">
+                            <a href="#"
+                            @click.prevent="$store.pageStore.setPage(item.page)"
+                            class="flex rounded-lg"
+                            :class="$store.pageStore.selectedPage === item.page ? 'bg-bgSelect' : 'hover:bg-bgGray'">
+                                <div class="w-[40px] text-center mr-[4px] rounded-[50%]">
+                                    <i :class="item.icon"></i>
+                                </div>
+                                <p x-text="item.label"></p>
+                            </a>
+                        </li>
+                    </template>
+                </ul>
+            </nav>
+        </aside>
+        <!-- 사이드 끝 -->
+        
+
+        <!-- 본문 -->
+        <main class="bg-white w-[calc(100%-264px)] rounded-2xl p-[15px]">
+            <section x-show="$store.router.isExactRoute('home')">
+                home
+            </section>
+            <section x-show="$store.router.isExactRoute('home/home2')">
+                home2
+            </section>
+            <section x-show="$store.router.isExactRoute('home/home3')">
+                home3
+            </section>
+            <section x-show="$store.router.isExactRoute('home/home3/home3-1')">
+                home3-1
+            </section>
+        </main>
+        <!-- 본문끝 -->
+    </div>
+
+    <!-- 캘린더 -->
+    <div x-show="$store.router.isRoute('calendar')" class="flex h-[calc(100%-56px)] p-[8px]">
+        calendar
+    </div>
+    <!-- 메인 끝 -->
+    
+    <script src="./stores/store.js"></script>
+</body>
+</html>
+
