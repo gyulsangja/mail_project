@@ -121,14 +121,14 @@ document.addEventListener('DOMContentLoaded', function () {
     flatpickr(periodStrInput, {
         dateFormat: "Y-m-d",
         onChange: function() {
-            Alpine.store('datePicker').selectedPeriod = 'free';
+            Alpine.data('datePicker').selectedPeriod = 'free';
         }
     });
 
     flatpickr(periodEndInput, {
         dateFormat: "Y-m-d",
         onChange: function() {
-            Alpine.store('datePicker').selectedPeriod = 'free';
+            Alpine.data('datePicker').selectedPeriod = 'free';
         }
     });
 });
