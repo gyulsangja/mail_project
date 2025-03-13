@@ -6,7 +6,7 @@ export class Aside extends LitElement {
     }
   render() {
     return html`
-    <aside class="w-[256px] p-[8px] leading-[40px]" x-data>
+    <aside class="w-[256px] p-[8px] leading-[40px]">
         <nav>
             <ul>
                 <li class="mb-[4px]">
@@ -15,7 +15,7 @@ export class Aside extends LitElement {
                         <div class="w-[40px] text-center mr-[4px] rounded-[50%]">
                             <i class="fa-regular fa-envelope"></i>
                         </div>
-                        <p>전체메일 </p>
+                        <p>전체메일</p>
                     </a>
                 </li>
             </ul>

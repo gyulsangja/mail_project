@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=apps" />
     
-    
+    <script defer src="./assets/js/alpinejs.min.js"></script>
     <script src="https://unpkg.com/navigo@8.1.1/lib/navigo.min.js"></script>
     <script src="./assets/js/tailwindcss.js"></script>
     <script src="./assets/js/jquery-3.7.1.min.js"></script>
@@ -18,24 +18,29 @@
 </head>
 <body>
   
-    <div id="app" x-data class="h-dvh w-dvw"></div>
+    <div id="app" class="h-dvh w-dvw"></div>
     <script >
 
       const router = new Navigo('/');
 
-      router.on(() => {
+      router.on('/', () => {
         const container = document.querySelector('#app');
-        container.innerHTML = `<home-page/>`;
+        container.innerHTML = `<home-page/></home-page>`;
+      });
+
+      router.on('/index.html', () => {
+        const container = document.querySelector('#app');
+        container.innerHTML = `<home-page/></home-page>`;
       });
 
       router.on('/login', () => {
         const container = document.querySelector('#app');
-        container.innerHTML = `<login-page/>`;
+        container.innerHTML = `<login-page/></login-page>`;
       });
 
       router.on('*', () => {
         const container = document.querySelector('#app');
-        container.innerHTML = `<not-page/>`;
+        container.innerHTML = `<not-page/></not-page>`;
       });
 
       

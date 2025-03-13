@@ -15,7 +15,6 @@ export class Home extends LitElement {
         class="h-full w-full bg-[#f6f8fc]"
     >
         <header-com></header-com>
-
         <!-- 메인 시작 -->
         
             <!-- home 메일서비스 시작 -->
@@ -26,8 +25,6 @@ export class Home extends LitElement {
                 <!-- 본문 -->
                 <main class="bg-white w-[calc(100%-312px)] rounded-2xl p-[15px]">
                     <section class="">
-        
-        
                     </section>
                 </main>
                 <!-- 본문끝 -->
